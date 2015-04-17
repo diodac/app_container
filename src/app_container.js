@@ -35,7 +35,7 @@
         }
     }
 
-    function getLazy(container, name) {
+    function getLazy(registry, container, name) {
         container.register.apply(container, registry[name].getParams(container));
         return container.get(name);
     }
@@ -68,7 +68,7 @@
                 } else if (registry[name] instanceof Value) {
                     return registry[name].getValue();
                 } else if (registry[name] instanceof Lazy) {
-                    return getLazy(this, name);
+                    return getLazy(registry, this, name);
                 } else {
                     return registry[name];
                 }
